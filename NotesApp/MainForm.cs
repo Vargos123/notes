@@ -34,23 +34,31 @@ namespace NotesApp
 
         private void LoadData()
         {
-            connection.Open();
-            string query = "SELECT * FROM  `" + log + "` ORDER BY `id`";            
-            command = new MySqlCommand(query, connection);                    
-            reader = command.ExecuteReader();
-
-            List<string[]> data = new List<string[]>();
-            while (reader.Read())
+            try
             {
-                data.Add(new string[2]);
-                data[data.Count - 1][0] = reader[1].ToString();
-                data[data.Count - 1][1] = reader[2].ToString();
+                connection.Open();
+                string query = "SELECT * FROM  `" + log + "` ORDER BY `id`";
+                command = new MySqlCommand(query, connection);
+                reader = command.ExecuteReader();
 
-            }
+                List<string[]> data = new List<string[]>();
+                while (reader.Read())
+                {
+                    data.Add(new string[2]);
+                    data[data.Count - 1][0] = reader[1].ToString();
+                    data[data.Count - 1][1] = reader[2].ToString();
+
+                }
                 reader.Close();
                 connection.Close();
                 foreach (string[] s in data)
-                dataGridView1.Rows.Add(s);
+                    dataGridView1.Rows.Add(s);
+            }
+            catch
+            {
+                MessageBox.Show("Непредвиденная ошибка!");
+                return;
+            }
         }
 
         private void bttSave_Click(object sender, EventArgs e)
@@ -372,11 +380,6 @@ namespace NotesApp
                 MessageBox.Show("Не удалось удалить аккаунт. Проверьте доступ к интернету!");
                 return;
             }
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

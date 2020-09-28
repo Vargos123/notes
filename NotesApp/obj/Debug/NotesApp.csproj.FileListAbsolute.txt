@@ -16,7 +16,6 @@ C:\Users\VASYL\source\repos\NotesApp\NotesApp\bin\Debug\K4os.Hash.xxHash.dll
 C:\Users\VASYL\source\repos\NotesApp\NotesApp\bin\Debug\System.Memory.dll
 C:\Users\VASYL\source\repos\NotesApp\NotesApp\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\VASYL\source\repos\NotesApp\NotesApp\bin\Debug\MySql.Data.xml
-C:\Users\VASYL\source\repos\NotesApp\NotesApp\obj\Debug\NotesApp.csprojAssemblyReference.cache
 C:\Users\VASYL\source\repos\NotesApp\NotesApp\obj\Debug\NotesApp.exe.config
 C:\Users\VASYL\source\repos\NotesApp\NotesApp\obj\Debug\NotesApp.LoginForm.resources
 C:\Users\VASYL\source\repos\NotesApp\NotesApp\obj\Debug\NotesApp.MainForm.resources

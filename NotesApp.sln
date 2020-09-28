@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteApp", "WindowsFormsApp2\NoteApp.csproj", "{41587305-6B1A-4A3D-81BD-7E3091C4AFB1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotesApp", "NotesApp\NotesApp.csproj", "{41587305-6B1A-4A3D-81BD-7E3091C4AFB1}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{9C46992D-6789-4025-B416-0D3ECAD56F1E}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{824EC11A-36C6-438E-8F9E-CFC27390177A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,17 +13,17 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{41587305-6B1A-4A3D-81BD-7E3091C4AFB1}.Debug|Any CPU.ActiveCfg = Release|Any CPU
-		{41587305-6B1A-4A3D-81BD-7E3091C4AFB1}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{41587305-6B1A-4A3D-81BD-7E3091C4AFB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41587305-6B1A-4A3D-81BD-7E3091C4AFB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41587305-6B1A-4A3D-81BD-7E3091C4AFB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41587305-6B1A-4A3D-81BD-7E3091C4AFB1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9C46992D-6789-4025-B416-0D3ECAD56F1E}.Debug|Any CPU.ActiveCfg = Debug
-		{9C46992D-6789-4025-B416-0D3ECAD56F1E}.Release|Any CPU.ActiveCfg = Debug
+		{824EC11A-36C6-438E-8F9E-CFC27390177A}.Debug|Any CPU.ActiveCfg = Debug
+		{824EC11A-36C6-438E-8F9E-CFC27390177A}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {DE2354F1-0959-40D1-86AB-12C829D4F0F7}
+		SolutionGuid = {A7C12D57-E4C2-4264-A95C-0A8113E10D35}
 	EndGlobalSection
 EndGlobal

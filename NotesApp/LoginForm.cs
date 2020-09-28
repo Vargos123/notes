@@ -13,7 +13,6 @@ namespace NotesApp
 {
     public partial class LoginForm : Form
     {
-
         public LoginForm()
         {
             this.StartPosition = FormStartPosition.CenterScreen;
