@@ -55,7 +55,6 @@ namespace WindowsFormsApp2
             lastPoint = new Point(e.X, e.Y);
         }
 
-
         private void butRegister_Click(object sender, EventArgs e)
         {
             if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())

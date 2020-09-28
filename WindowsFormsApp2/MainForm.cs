@@ -115,7 +115,6 @@ namespace WindowsFormsApp2
                 MessageBox.Show("Не удалось сохранить данные. Проверьте доступ к интернету!");
             }            
         }
-
         private void CloseButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -169,8 +168,8 @@ namespace WindowsFormsApp2
 
             if (n > -1)
             {
-                nameBox.Text = (string)dataGridView1.Rows[n].Cells[1].Value;
-                massageBox.Text = (string)dataGridView1.Rows[n].Cells[2].Value;
+                nameBox.Text = (string)dataGridView1.Rows[n].Cells[0].Value;
+                massageBox.Text = (string)dataGridView1.Rows[n].Cells[1].Value;
             }
         }
 
@@ -219,21 +218,28 @@ namespace WindowsFormsApp2
         {
             try
             {
-                if (MessageBox.Show("Вы действительно хотите удалить все записи?", "Удаление", MessageBoxButtons.OKCancel,
+                if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+                {
+                    if (MessageBox.Show("Вы действительно хотите удалить все записи?", "Удаление", MessageBoxButtons.OKCancel,
                     MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.OK)
-                { 
-                    int index = dataGridView1.SelectedCells[0].RowIndex + 1;
-                    dataGridView1.Rows.RemoveAt(dataGridView1.SelectedCells[0].RowIndex);
+                    {
+                        int index = dataGridView1.SelectedCells[0].RowIndex + 1;
+                        dataGridView1.Rows.RemoveAt(dataGridView1.SelectedCells[0].RowIndex);
 
-                    MySqlCommand comman2 = new MySqlCommand("DELETE FROM `" + log + "` WHERE id = " + index + "", db.getConn()); // Удаляем выделенную строку по индексу
-                    MySqlCommand comman1 = new MySqlCommand("ALTER TABLE `" + log + "` DROP id;" +
-                    "ALTER TABLE `" + log + "`" +
-                    "ADD id INT UNSIGNED NOT NULL AUTO_INCREMENT FIRST," +
-                    "ADD PRIMARY KEY(id)", db.getConn()); // Обновляем ид от 1
-                    db.openConn();
-                    comman2.ExecuteNonQuery();
-                    comman1.ExecuteNonQuery();
-                    db.closeConn();
+                        MySqlCommand comman2 = new MySqlCommand("DELETE FROM `" + log + "` WHERE id = " + index + "", db.getConn()); // Удаляем выделенную строку по индексу
+                        MySqlCommand comman1 = new MySqlCommand("ALTER TABLE `" + log + "` DROP id;" +
+                        "ALTER TABLE `" + log + "`" +
+                        "ADD id INT UNSIGNED NOT NULL AUTO_INCREMENT FIRST," +
+                        "ADD PRIMARY KEY(id)", db.getConn()); // Обновляем ид от 1
+                        db.openConn();
+                        comman2.ExecuteNonQuery();
+                        comman1.ExecuteNonQuery();
+                        db.closeConn();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Не удалось удалить данные. Проверьте доступ к интернету!");
                 }
             }
             catch
@@ -294,7 +300,7 @@ namespace WindowsFormsApp2
             {
                 if (MessageBox.Show("Вы действительно хотите удалить свой аккаунт? ", "Удаление", MessageBoxButtons.OKCancel,
                 MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.OK)
-            {
+                {
                     if (MessageBox.Show("Аккаунт восстановлению не принадлежит.                           Вы действительно хотите продолжить?! ", "Удаление", MessageBoxButtons.OKCancel,
                      MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.OK)
                     {
@@ -320,13 +326,12 @@ namespace WindowsFormsApp2
                             MessageBox.Show("Не удалось удалить аккаунт. Проверьте доступ к интернету!");
                         }
                     }
-                }
-            }            
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
+                }                
+            }
+            else
+            {
+                MessageBox.Show("Не удалось удалить аккаунт. Проверьте доступ к интернету!");
+            }
         }
     }
 }
