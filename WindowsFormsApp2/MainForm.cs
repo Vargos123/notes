@@ -160,36 +160,53 @@ namespace WindowsFormsApp2
         {
             nameBox.Clear();
             massageBox.Clear();
-        }    
-        
+        }
+
         private void bttRead_Click(object sender, EventArgs e)
         {
-            int n = dataGridView1.CurrentCell.RowIndex;
-
-            if (n > -1)
+            if (dataGridView1.RowCount > 0)
             {
-                nameBox.Text = (string)dataGridView1.Rows[n].Cells[0].Value;
-                massageBox.Text = (string)dataGridView1.Rows[n].Cells[1].Value;
+                int n = dataGridView1.CurrentCell.RowIndex;
+
+                if (n > -1)
+                {
+                    nameBox.Text = (string)dataGridView1.Rows[n].Cells[0].Value;
+                    massageBox.Text = (string)dataGridView1.Rows[n].Cells[1].Value;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Нет записей для чтения. Добавьте записи!");
+                return;
             }
         }
 
         private void bttFind_Click_1(object sender, EventArgs e)
         {
-            if (textBoxSearch.Text == "")
+            if (dataGridView1.RowCount > 0)
             {
-                MessageBox.Show("Вы не ввели данные для поиска");
-                return;
+
+                if (textBoxSearch.Text == "")
+                {
+                    MessageBox.Show("Вы не ввели данные для поиска");
+                    return;
+                }
+                for (int i = 0; i < dataGridView1.RowCount; i++)
+                {
+                    dataGridView1.Rows[i].Selected = false;
+                    for (int j = 0; j < dataGridView1.ColumnCount; j++)
+                        if (dataGridView1.Rows[i].Cells[j].Value != null)
+                            if (dataGridView1.Rows[i].Cells[j].Value.ToString().Contains(textBoxSearch.Text))
+                            {
+                                dataGridView1.Rows[i].Selected = true;
+                                break;
+                            }
+                }
             }
-            for (int i = 0; i < dataGridView1.RowCount; i++)
+            else
             {
-                dataGridView1.Rows[i].Selected = false;
-                for (int j = 0; j < dataGridView1.ColumnCount; j++)
-                    if (dataGridView1.Rows[i].Cells[j].Value != null)
-                        if (dataGridView1.Rows[i].Cells[j].Value.ToString().Contains(textBoxSearch.Text))
-                        {
-                            dataGridView1.Rows[i].Selected = true;
-                            break;
-                        }
+                MessageBox.Show("Нет записей для поиска. Добавьте записи!");
+                return;
             }
         }
 
@@ -216,35 +233,45 @@ namespace WindowsFormsApp2
 
         private void bttDelete_Click(object sender, EventArgs e)
         {
-            try
+            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
             {
-                if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+                if (dataGridView1.RowCount > 0)
                 {
-                    if (MessageBox.Show("Вы действительно хотите удалить все записи?", "Удаление", MessageBoxButtons.OKCancel,
+                    if (MessageBox.Show("Вы действительно хотите удалить выделенную запись?", "Удаление", MessageBoxButtons.OKCancel,
                     MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.OK)
                     {
-                        int index = dataGridView1.SelectedCells[0].RowIndex + 1;
-                        dataGridView1.Rows.RemoveAt(dataGridView1.SelectedCells[0].RowIndex);
+                        if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+                        {
+                            int index = dataGridView1.SelectedCells[0].RowIndex + 1;
+                            dataGridView1.Rows.RemoveAt(dataGridView1.SelectedCells[0].RowIndex);
 
-                        MySqlCommand comman2 = new MySqlCommand("DELETE FROM `" + log + "` WHERE id = " + index + "", db.getConn()); // Удаляем выделенную строку по индексу
-                        MySqlCommand comman1 = new MySqlCommand("ALTER TABLE `" + log + "` DROP id;" +
-                        "ALTER TABLE `" + log + "`" +
-                        "ADD id INT UNSIGNED NOT NULL AUTO_INCREMENT FIRST," +
-                        "ADD PRIMARY KEY(id)", db.getConn()); // Обновляем ид от 1
-                        db.openConn();
-                        comman2.ExecuteNonQuery();
-                        comman1.ExecuteNonQuery();
-                        db.closeConn();
-                    }
+                            MySqlCommand comman2 = new MySqlCommand("DELETE FROM `" + log + "` WHERE id = " + index + "", db.getConn()); // Удаляем выделенную строку по индексу
+                            MySqlCommand comman1 = new MySqlCommand("ALTER TABLE `" + log + "` DROP id;" +
+                            "ALTER TABLE `" + log + "`" +
+                            "ADD id INT UNSIGNED NOT NULL AUTO_INCREMENT FIRST," +
+                            "ADD PRIMARY KEY(id)", db.getConn()); // Обновляем ид от 1
+                            db.openConn();
+                            comman2.ExecuteNonQuery();
+                            comman1.ExecuteNonQuery();
+                            db.closeConn();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Не удалось удалить данные. Проверьте доступ к интернету!");
+                            return;
+                        }
+                    }                    
                 }
                 else
                 {
-                    MessageBox.Show("Не удалось удалить данные. Проверьте доступ к интернету!");
+                    MessageBox.Show("Нет записей для удаления!");
+                    return;
                 }
             }
-            catch
+            else
             {
-                MessageBox.Show("Нет записей для удаления!");
+                MessageBox.Show("Не удалось удалить данные. Проверьте доступ к интернету!");
+                return;
             }
         }
 
@@ -252,38 +279,49 @@ namespace WindowsFormsApp2
         {
             if (textBoxSearch.TextLength == 50)
             {
-                MessageBox.Show("Достигнуто максимальное количество символов: 50");
+                MessageBox.Show("Достигнуто максимальное количество символов: 50!");
                 return;
             }
         }
 
         private void bttDelAll_Click(object sender, EventArgs e)
         {
-            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            if (dataGridView1.RowCount > 0)
             {
-                if (MessageBox.Show("Вы действительно хотите удалить все записи?", "Удаление", MessageBoxButtons.OKCancel,
-                    MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.OK)
+                if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+                {
+                    if (MessageBox.Show("Вы действительно хотите удалить все записи?", "Удаление", MessageBoxButtons.OKCancel,
+                        MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.OK)
                     {
                         if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
-                            {
+                        {
                             dataGridView1.Rows.Clear();
                             using (MySqlCommand commanS = new MySqlCommand("TRUNCATE TABLE " + log, db.getConn()))
                             {
                                 db.openConn();
                                 commanS.ExecuteNonQuery();
                                 db.closeConn();
-                            }                            
-                             MessageBox.Show("Все записи были успешно удаленны");                            
+                            }
+                            MessageBox.Show("Все записи были успешно удаленны!");
+                            return;
                         }
                         else
                         {
                             MessageBox.Show("Не удалось удалить данные. Проверьте доступ к интернету!");
+                            return;
                         }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Не удалось удалить данные. Проверьте доступ к интернету!");
+                    return;
                 }
             }
             else
             {
-                MessageBox.Show("Не удалось удалить данные. Проверьте доступ к интернету!");
+                MessageBox.Show("Нет записей для удаления!");
+                return;
             }
         }
 
@@ -301,7 +339,7 @@ namespace WindowsFormsApp2
                 if (MessageBox.Show("Вы действительно хотите удалить свой аккаунт? ", "Удаление", MessageBoxButtons.OKCancel,
                 MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.OK)
                 {
-                    if (MessageBox.Show("Аккаунт восстановлению не принадлежит.                           Вы действительно хотите продолжить?! ", "Удаление", MessageBoxButtons.OKCancel,
+                    if (MessageBox.Show("Аккаунт восстановлению не принадлежит!                           Вы действительно хотите продолжить?! ", "Удаление", MessageBoxButtons.OKCancel,
                      MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.OK)
                     {
                         if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
@@ -324,6 +362,7 @@ namespace WindowsFormsApp2
                         else
                         {
                             MessageBox.Show("Не удалось удалить аккаунт. Проверьте доступ к интернету!");
+                            return;
                         }
                     }
                 }                
@@ -331,6 +370,7 @@ namespace WindowsFormsApp2
             else
             {
                 MessageBox.Show("Не удалось удалить аккаунт. Проверьте доступ к интернету!");
+                return;
             }
         }
     }

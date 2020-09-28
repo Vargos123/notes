@@ -67,7 +67,6 @@ namespace WindowsFormsApp2
         {
             if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
             {
-
                 if (loginF.Text == "")
                 {
                     MessageBox.Show("Вы не ввели Логин");

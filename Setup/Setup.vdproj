@@ -5829,9 +5829,9 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Setup"
+        "ProductName" = "8:Notes"
         "ProductCode" = "8:{D7065816-DD4F-469F-B108-F506DBE25256}"
-        "PackageCode" = "8:{B9D7DBB6-A266-4C2D-86D2-F49474A7EB7B}"
+        "PackageCode" = "8:{804070A1-31F8-47D6-9F6A-33FAAC05396B}"
         "UpgradeCode" = "8:{90AA845D-38A2-439A-9463-1FF9108D0B4C}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -5953,7 +5953,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_16760CFC759E4C5B84DDF71A19EE1752"
             {
-            "Name" = "8:Notes installer"
+            "Name" = "8:Notes"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -5967,7 +5967,7 @@
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_EBDEA96A170747ABB092E083AC68478D"
             {
-            "Name" = "8:Notes Installer"
+            "Name" = "8:Notes"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
