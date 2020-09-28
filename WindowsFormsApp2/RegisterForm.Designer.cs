@@ -29,7 +29,12 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
+            this.hide = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.goToLogin = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -37,10 +42,6 @@
             this.passF = new System.Windows.Forms.TextBox();
             this.loginF = new System.Windows.Forms.TextBox();
             this.CloseButton = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,11 +50,12 @@
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.BackgroundImage = global::WindowsFormsApp2.Properties.Resources.Регистрация;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.panel1.Controls.Add(this.hide);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.richTextBox1);
             this.panel1.Controls.Add(this.textBox4);
             this.panel1.Controls.Add(this.richTextBox2);
-            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.goToLogin);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
@@ -68,22 +70,83 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(474, 605);
             this.panel1.TabIndex = 1;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             // 
-            // label4
+            // hide
             // 
-            this.label4.AutoSize = true;
-            this.label4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(274, 532);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(55, 18);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Войти";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
+            this.hide.BackColor = System.Drawing.Color.Transparent;
+            this.hide.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.hide.ForeColor = System.Drawing.Color.White;
+            this.hide.Location = new System.Drawing.Point(410, 2);
+            this.hide.Name = "hide";
+            this.hide.Size = new System.Drawing.Size(24, 22);
+            this.hide.TabIndex = 28;
+            this.hide.Text = "-";
+            this.hide.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.hide.MouseEnter += new System.EventHandler(this.hide_MouseEnter);
+            this.hide.MouseLeave += new System.EventHandler(this.hide_MouseLeave);
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox1.Location = new System.Drawing.Point(356, 352);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(22, 13);
+            this.textBox1.TabIndex = 27;
+            this.textBox1.Text = "/32";
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.richTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.richTextBox1.Location = new System.Drawing.Point(330, 352);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.richTextBox1.Size = new System.Drawing.Size(26, 13);
+            this.richTextBox1.TabIndex = 26;
+            this.richTextBox1.Text = "0";
+            // 
+            // textBox4
+            // 
+            this.textBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox4.Location = new System.Drawing.Point(356, 242);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(22, 13);
+            this.textBox4.TabIndex = 25;
+            this.textBox4.Text = "/16";
+            // 
+            // richTextBox2
+            // 
+            this.richTextBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.richTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.richTextBox2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.richTextBox2.Location = new System.Drawing.Point(330, 242);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.richTextBox2.Size = new System.Drawing.Size(26, 13);
+            this.richTextBox2.TabIndex = 24;
+            this.richTextBox2.Text = "0";
+            // 
+            // goToLogin
+            // 
+            this.goToLogin.AutoSize = true;
+            this.goToLogin.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.goToLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.goToLogin.ForeColor = System.Drawing.Color.White;
+            this.goToLogin.Location = new System.Drawing.Point(274, 532);
+            this.goToLogin.Name = "goToLogin";
+            this.goToLogin.Size = new System.Drawing.Size(55, 18);
+            this.goToLogin.TabIndex = 10;
+            this.goToLogin.Text = "Войти";
+            this.goToLogin.Click += new System.EventHandler(this.goToLogin_Click);
             // 
             // label3
             // 
@@ -96,7 +159,6 @@
             this.label3.Size = new System.Drawing.Size(120, 18);
             this.label3.TabIndex = 9;
             this.label3.Text = "Есть аккаунт?";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 
@@ -174,54 +236,6 @@
             this.CloseButton.MouseEnter += new System.EventHandler(this.CloseButton_MouseEnter);
             this.CloseButton.MouseLeave += new System.EventHandler(this.CloseButton_MouseLeave);
             // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.Location = new System.Drawing.Point(356, 352);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(22, 13);
-            this.textBox1.TabIndex = 27;
-            this.textBox1.Text = "/32";
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.richTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.richTextBox1.Location = new System.Drawing.Point(330, 352);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.richTextBox1.Size = new System.Drawing.Size(26, 13);
-            this.richTextBox1.TabIndex = 26;
-            this.richTextBox1.Text = "0";
-            // 
-            // textBox4
-            // 
-            this.textBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox4.Location = new System.Drawing.Point(356, 242);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(22, 13);
-            this.textBox4.TabIndex = 25;
-            this.textBox4.Text = "/16";
-            // 
-            // richTextBox2
-            // 
-            this.richTextBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.richTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.richTextBox2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.richTextBox2.Location = new System.Drawing.Point(330, 242);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.richTextBox2.Size = new System.Drawing.Size(26, 13);
-            this.richTextBox2.TabIndex = 24;
-            this.richTextBox2.Text = "0";
-            // 
             // RegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -247,10 +261,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label goToLogin;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.Label hide;
     }
 }

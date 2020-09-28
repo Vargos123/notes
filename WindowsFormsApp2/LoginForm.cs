@@ -13,28 +13,40 @@ namespace WindowsFormsApp2
 {
     public partial class LoginForm : Form
     {
+
         public LoginForm()
         {
             this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
-
             this.passF.AutoSize = false;
             this.passF.Size = new Size(this.passF.Size.Width, 37);
+
+
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
         {
             Application.Exit(); // Выход из приложения
         }
-
         private void CloseButton_MouseEnter(object sender, EventArgs e)
         {
             CloseButton.ForeColor = Color.Black; // черный крестик при наводе мышкой
         }
-
         private void CloseButton_MouseLeave(object sender, EventArgs e)
         {
             CloseButton.ForeColor = Color.White; // белый крестик
+        }
+        private void hide_MouseEnter(object sender, EventArgs e)
+        {
+            hide.ForeColor = Color.Black; // черный - при наводе мышкой на 
+        }
+        private void hide_MouseLeave(object sender, EventArgs e)
+        {
+            hide.ForeColor = Color.White; // белый -
+        }
+        private void hide_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
 
         Point lastPoint;
@@ -55,65 +67,73 @@ namespace WindowsFormsApp2
 
         private void butLogin_Click(object sender, EventArgs e)
         {
-            if (loginF.Text == "")
+            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
             {
-                MessageBox.Show("Вы не ввели Логин");
-                return;
-            }
-            else if (loginF.TextLength < 4)
-            {
-                MessageBox.Show("Минимальная длина логина 4 символа.");
-                return;
-            }
-            else if (passF.Text == "")
-            {
-                MessageBox.Show("Вы не ввели Пароль");
-                return;
-            }
-            else if (passF.TextLength < 4)
-            {
-                MessageBox.Show("Минимальная длина пароля 4 символа.");
-                return;
-            }
-            else if (loginF.Text == "AllUsersLogPass")  //// ПАПКА ГДЕ ЛОГИНЫ И ПАРОЛИ
-            {
-                MessageBox.Show("В данный аккаунт невозможно зайти! ");
-                return;
-            }
 
-            String Login = loginF.Text;
-            String Pass = passF.Text;
-
-            DataB db = new DataB();
-            DataTable table = new DataTable();
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
-            // ввод логина и пароля и сравнение логина с БД 
-
-            try
-            {
-                MySqlCommand command = new MySqlCommand("SELECT * FROM `AllUsersLogPass` WHERE `login` = @userL AND `pass` = @userP", db.getConn());
-                command.Parameters.Add("@userL", MySqlDbType.VarChar).Value = Login;
-                command.Parameters.Add("@userP", MySqlDbType.VarChar).Value = Pass;
-
-                adapter.SelectCommand = command;
-                adapter.Fill(table);
-                if (table.Rows.Count > 0)
+                if (loginF.Text == "")
                 {
-                    this.Hide();
-                    MainForm mainF = new MainForm(this.loginF.Text, this.passF.Text);
-                    mainF.Show();
-
+                    MessageBox.Show("Вы не ввели Логин");
+                    return;
                 }
-                else
+                else if (loginF.TextLength < 4)
+                {
+                    MessageBox.Show("Минимальная длина логина 4 символа.");
+                    return;
+                }
+                else if (passF.Text == "")
+                {
+                    MessageBox.Show("Вы не ввели Пароль");
+                    return;
+                }
+                else if (passF.TextLength < 4)
+                {
+                    MessageBox.Show("Минимальная длина пароля 4 символа.");
+                    return;
+                }
+                else if (loginF.Text == "AllUsersLogPass")  //// ПАПКА ГДЕ ЛОГИНЫ И ПАРОЛИ
+                {
+                    MessageBox.Show("В данный аккаунт невозможно зайти! ");
+                    return;
+                }
+
+                String Login = loginF.Text;
+                String Pass = passF.Text;
+
+                DataB db = new DataB();
+                DataTable table = new DataTable();
+                MySqlDataAdapter adapter = new MySqlDataAdapter();
+                // ввод логина и пароля и сравнение логина с БД 
+
+                try
+                {
+                    MySqlCommand command = new MySqlCommand("SELECT * FROM `AllUsersLogPass` WHERE `login` = @userL AND `pass` = @userP", db.getConn());
+                    command.Parameters.Add("@userL", MySqlDbType.VarChar).Value = Login;
+                    command.Parameters.Add("@userP", MySqlDbType.VarChar).Value = Pass;
+
+                    adapter.SelectCommand = command;
+                    adapter.Fill(table);
+                    if (table.Rows.Count > 0)
+                    {
+                        this.Hide();
+                        MainForm mainF = new MainForm(this.loginF.Text, this.passF.Text);
+                        mainF.Show();
+
+                    }
+                    else
+                        MessageBox.Show("Не правильный логин или пароль! Проверьте правильность ввода даных");
+                }
+                catch
+                {
                     MessageBox.Show("Не правильный логин или пароль! Проверьте правильность ввода даных");
+                }
             }
-            catch
+            else
             {
-                MessageBox.Show("Не правильный логин или пароль! Проверьте правильность ввода даных");
+                MessageBox.Show("Не удалось войти в аккаунт. Проверьте доступ к интернету!");
             }
         }
-        
-        private void label3_Click(object sender, EventArgs e)
+
+        private void createAcc_Click(object sender, EventArgs e)
         {
             // скрывать окно и регистрироваться
             this.Hide();
@@ -130,10 +150,9 @@ namespace WindowsFormsApp2
                 return;
             }
         }
-        
+
         private void loginF_TextChanged(object sender, EventArgs e)
         {
-
             richTextBox2.Text = loginF.Text.Length.ToString();
             if (loginF.TextLength == 16)
             {

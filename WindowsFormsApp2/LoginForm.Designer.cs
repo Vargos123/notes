@@ -30,11 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.hide = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.createAcc = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.butLogin = new System.Windows.Forms.Button();
@@ -49,11 +50,12 @@
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.BackgroundImage = global::WindowsFormsApp2.Properties.Resources.Login1;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel1.Controls.Add(this.hide);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.richTextBox1);
             this.panel1.Controls.Add(this.textBox4);
             this.panel1.Controls.Add(this.richTextBox2);
-            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.createAcc);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.butLogin);
@@ -68,6 +70,21 @@
             this.panel1.TabIndex = 0;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
+            // 
+            // hide
+            // 
+            this.hide.BackColor = System.Drawing.Color.Transparent;
+            this.hide.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.hide.ForeColor = System.Drawing.Color.White;
+            this.hide.Location = new System.Drawing.Point(410, 2);
+            this.hide.Name = "hide";
+            this.hide.Size = new System.Drawing.Size(24, 22);
+            this.hide.TabIndex = 29;
+            this.hide.Text = "-";
+            this.hide.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.hide.Click += new System.EventHandler(this.hide_Click);
+            this.hide.MouseEnter += new System.EventHandler(this.hide_MouseEnter);
+            this.hide.MouseLeave += new System.EventHandler(this.hide_MouseLeave);
             // 
             // textBox1
             // 
@@ -117,18 +134,18 @@
             this.richTextBox2.TabIndex = 28;
             this.richTextBox2.Text = "0";
             // 
-            // label3
+            // createAcc
             // 
-            this.label3.AutoSize = true;
-            this.label3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(173, 532);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(141, 18);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Создать аккаунт";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
+            this.createAcc.AutoSize = true;
+            this.createAcc.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.createAcc.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.createAcc.ForeColor = System.Drawing.Color.White;
+            this.createAcc.Location = new System.Drawing.Point(173, 532);
+            this.createAcc.Name = "createAcc";
+            this.createAcc.Size = new System.Drawing.Size(141, 18);
+            this.createAcc.TabIndex = 8;
+            this.createAcc.Text = "Создать аккаунт";
+            this.createAcc.Click += new System.EventHandler(this.createAcc_Click);
             // 
             // label2
             // 
@@ -233,11 +250,12 @@
         private System.Windows.Forms.Button butLogin;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label createAcc;
         public System.Windows.Forms.TextBox loginF;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.Label hide;
     }
 }
