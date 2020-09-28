@@ -14,7 +14,6 @@ C:\Users\VASYL\source\repos\WindowsFormsApp2\WindowsFormsApp2\bin\Release\K4os.H
 C:\Users\VASYL\source\repos\WindowsFormsApp2\WindowsFormsApp2\bin\Release\System.Memory.dll
 C:\Users\VASYL\source\repos\WindowsFormsApp2\WindowsFormsApp2\bin\Release\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\VASYL\source\repos\WindowsFormsApp2\WindowsFormsApp2\bin\Release\MySql.Data.xml
-C:\Users\VASYL\source\repos\WindowsFormsApp2\WindowsFormsApp2\obj\Release\WindowsFormsApp2.csprojAssemblyReference.cache
 C:\Users\VASYL\source\repos\WindowsFormsApp2\WindowsFormsApp2\obj\Release\WindowsFormsApp2.exe.config
 C:\Users\VASYL\source\repos\WindowsFormsApp2\WindowsFormsApp2\obj\Release\WindowsFormsApp2.LoginForm.resources
 C:\Users\VASYL\source\repos\WindowsFormsApp2\WindowsFormsApp2\obj\Release\WindowsFormsApp2.Properties.Resources.resources
@@ -25,3 +24,7 @@ C:\Users\VASYL\source\repos\WindowsFormsApp2\WindowsFormsApp2\obj\Release\Window
 C:\Users\VASYL\source\repos\WindowsFormsApp2\WindowsFormsApp2\obj\Release\WindowsFormsApp2.exe
 C:\Users\VASYL\source\repos\WindowsFormsApp2\WindowsFormsApp2\obj\Release\WindowsFormsApp2.pdb
 C:\Users\VASYL\source\repos\WindowsFormsApp2\WindowsFormsApp2\obj\Release\WindowsFormsApp2.MainForm.resources
+C:\Users\VASYL\source\repos\WindowsFormsApp2\WindowsFormsApp2\bin\Release\WindowsFormsApp2.exe.manifest
+C:\Users\VASYL\source\repos\WindowsFormsApp2\WindowsFormsApp2\bin\Release\WindowsFormsApp2.application
+C:\Users\VASYL\source\repos\WindowsFormsApp2\WindowsFormsApp2\obj\Release\WindowsFormsApp2.exe.manifest
+C:\Users\VASYL\source\repos\WindowsFormsApp2\WindowsFormsApp2\obj\Release\WindowsFormsApp2.application
