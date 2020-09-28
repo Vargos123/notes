@@ -20,8 +20,6 @@ namespace WindowsFormsApp2
             InitializeComponent();
             this.passF.AutoSize = false;
             this.passF.Size = new Size(this.passF.Size.Width, 37);
-
-
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
