@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.bttSave = new System.Windows.Forms.Button();
             this.nameBox = new System.Windows.Forms.TextBox();
-            this.massageBox = new System.Windows.Forms.TextBox();
+            this.messageBox = new System.Windows.Forms.TextBox();
             this.bttNew = new System.Windows.Forms.Button();
             this.bttRead = new System.Windows.Forms.Button();
             this.bttDelete = new System.Windows.Forms.Button();
@@ -61,7 +61,7 @@
             this.bttSave.BackColor = System.Drawing.Color.PaleVioletRed;
             this.bttSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bttSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.bttSave.Location = new System.Drawing.Point(53, 147);
+            this.bttSave.Location = new System.Drawing.Point(53, 146);
             this.bttSave.Name = "bttSave";
             this.bttSave.Size = new System.Drawing.Size(119, 36);
             this.bttSave.TabIndex = 1;
@@ -82,25 +82,25 @@
             this.nameBox.TabIndex = 2;
             this.nameBox.TextChanged += new System.EventHandler(this.nameBox_TextChanged);
             // 
-            // massageBox
+            // messageBox
             // 
-            this.massageBox.BackColor = System.Drawing.Color.HotPink;
-            this.massageBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.massageBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.massageBox.Location = new System.Drawing.Point(331, 62);
-            this.massageBox.MaxLength = 500;
-            this.massageBox.Multiline = true;
-            this.massageBox.Name = "massageBox";
-            this.massageBox.Size = new System.Drawing.Size(412, 121);
-            this.massageBox.TabIndex = 3;
-            this.massageBox.TextChanged += new System.EventHandler(this.massageBox_TextChanged);
+            this.messageBox.BackColor = System.Drawing.Color.HotPink;
+            this.messageBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.messageBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.messageBox.Location = new System.Drawing.Point(331, 62);
+            this.messageBox.MaxLength = 500;
+            this.messageBox.Multiline = true;
+            this.messageBox.Name = "messageBox";
+            this.messageBox.Size = new System.Drawing.Size(412, 120);
+            this.messageBox.TabIndex = 3;
+            this.messageBox.TextChanged += new System.EventHandler(this.messageBox_TextChanged);
             // 
             // bttNew
             // 
             this.bttNew.BackColor = System.Drawing.Color.PaleVioletRed;
             this.bttNew.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bttNew.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.bttNew.Location = new System.Drawing.Point(53, 105);
+            this.bttNew.Location = new System.Drawing.Point(53, 104);
             this.bttNew.Name = "bttNew";
             this.bttNew.Size = new System.Drawing.Size(119, 36);
             this.bttNew.TabIndex = 4;
@@ -240,7 +240,7 @@
             this.richTextBox1.Cursor = System.Windows.Forms.Cursors.Default;
             this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.richTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.richTextBox1.Location = new System.Drawing.Point(685, 183);
+            this.richTextBox1.Location = new System.Drawing.Point(685, 182);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -254,7 +254,7 @@
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox3.Cursor = System.Windows.Forms.Cursors.Default;
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox3.Location = new System.Drawing.Point(711, 183);
+            this.textBox3.Location = new System.Drawing.Point(711, 182);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(32, 13);
@@ -366,7 +366,7 @@
             this.Controls.Add(this.bttDelete);
             this.Controls.Add(this.bttRead);
             this.Controls.Add(this.bttNew);
-            this.Controls.Add(this.massageBox);
+            this.Controls.Add(this.messageBox);
             this.Controls.Add(this.nameBox);
             this.Controls.Add(this.bttSave);
             this.Controls.Add(this.dataGridView1);
@@ -375,6 +375,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "MainForm";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseMove);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -388,7 +389,7 @@
         #endregion
         private System.Windows.Forms.Button bttSave;
         private System.Windows.Forms.TextBox nameBox;
-        private System.Windows.Forms.TextBox massageBox;
+        private System.Windows.Forms.TextBox messageBox;
         private System.Windows.Forms.Button bttNew;
         private System.Windows.Forms.Button bttRead;
         private System.Windows.Forms.Button bttDelete;

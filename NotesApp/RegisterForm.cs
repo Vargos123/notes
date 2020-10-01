@@ -170,8 +170,6 @@ namespace NotesApp
 
                 MySqlCommand command = new MySqlCommand("SELECT * FROM `AllUsersLogPass` WHERE `login` = @userL", db.getConn());
                 command.Parameters.Add("@userL", MySqlDbType.VarChar).Value = loginF.Text;
-
-
                 adapter.SelectCommand = command;
                 adapter.Fill(table);
 

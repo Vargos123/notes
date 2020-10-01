@@ -21,7 +21,7 @@ namespace NotesApp
         MySqlCommand command;
         MySqlDataReader reader;
 
-        public MainForm(string log, string pas)
+        public MainForm(string log)
         {
             // Стартовая позиция по центру экрана
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -85,12 +85,12 @@ namespace NotesApp
                     MessageBox.Show("Длина Названия превышает допустимую норму. Максимальная длина 50 символов.");
                     return;
                 }
-                else if (massageBox.Text == "")
+                else if (messageBox.Text == "")
                 {
                     MessageBox.Show("Вы не ввели Сообщение");
                     return;
                 }
-                else if (massageBox.TextLength < 4)
+                else if (messageBox.TextLength < 4)
                 {
                     MessageBox.Show("Длина Сообщения меньше допустимой нормы. Минимальная длина 4 символа.");
                     return;
@@ -99,13 +99,13 @@ namespace NotesApp
                 {
                     int n = dataGridView1.Rows.Add();
                     dataGridView1.Rows[n].Cells[0].Value = nameBox.Text;
-                    dataGridView1.Rows[n].Cells[1].Value = massageBox.Text;
+                    dataGridView1.Rows[n].Cells[1].Value = messageBox.Text;
                 }
 
-                MySqlCommand command = new MySqlCommand("INSERT INTO " + log + " (`Title`, `Massage`) VALUES (@Title, @Massage)", db.getConn());
+                MySqlCommand command = new MySqlCommand("INSERT INTO " + log + " (`Title`, `Message`) VALUES (@Title, @Message)", db.getConn());
 
                 command.Parameters.Add("@Title", MySqlDbType.VarChar).Value = nameBox.Text;
-                command.Parameters.Add("@Massage", MySqlDbType.VarChar).Value = massageBox.Text;
+                command.Parameters.Add("@Message", MySqlDbType.VarChar).Value = messageBox.Text;
 
                 db.openConn();
 
@@ -116,7 +116,7 @@ namespace NotesApp
 
                 db.closeConn();
                 nameBox.Clear();
-                massageBox.Clear();
+                messageBox.Clear();
             }
             else
             {
@@ -167,7 +167,7 @@ namespace NotesApp
         private void bttNew_Click(object sender, EventArgs e)
         {
             nameBox.Clear();
-            massageBox.Clear();
+            messageBox.Clear();
         }
 
         private void bttRead_Click(object sender, EventArgs e)
@@ -179,7 +179,7 @@ namespace NotesApp
                 if (n > -1)
                 {
                     nameBox.Text = (string)dataGridView1.Rows[n].Cells[0].Value;
-                    massageBox.Text = (string)dataGridView1.Rows[n].Cells[1].Value;
+                    messageBox.Text = (string)dataGridView1.Rows[n].Cells[1].Value;
                 }
             }
             else
@@ -218,11 +218,11 @@ namespace NotesApp
             }
         }
 
-        private void massageBox_TextChanged(object sender, EventArgs e)
+        private void messageBox_TextChanged(object sender, EventArgs e)
         {
-            richTextBox1.Text = massageBox.Text.Length.ToString();
+            richTextBox1.Text = messageBox.Text.Length.ToString();
 
-            if (massageBox.TextLength == 500)
+            if (messageBox.TextLength == 500)
             {
                 MessageBox.Show("Достигнуто максимальное количество символов: 500");
                 return;
@@ -380,6 +380,11 @@ namespace NotesApp
                 MessageBox.Show("Не удалось удалить аккаунт. Проверьте доступ к интернету!");
                 return;
             }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

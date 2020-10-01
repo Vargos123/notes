@@ -86,11 +86,6 @@ namespace NotesApp
                     MessageBox.Show("Минимальная длина пароля 4 символа.");
                     return;
                 }
-                else if (loginF.Text == "AllUsersLogPass")  //// ПАПКА ГДЕ ЛОГИНЫ И ПАРОЛИ
-                {
-                    MessageBox.Show("В данный аккаунт невозможно зайти! ");
-                    return;
-                }
 
                 String Login = loginF.Text;
                 String Pass = passF.Text;
@@ -111,7 +106,7 @@ namespace NotesApp
                     if (table.Rows.Count > 0)
                     {
                         this.Hide();
-                        MainForm mainF = new MainForm(this.loginF.Text, this.passF.Text);
+                        MainForm mainF = new MainForm(this.loginF.Text);
                         mainF.Show();
 
                     }
@@ -155,6 +150,13 @@ namespace NotesApp
                 MessageBox.Show("Достигнуто максимальное количество символов: 16");
                 return;
             }
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            MainFormNoLogin mainF = new MainFormNoLogin();
+            mainF.Show();
         }
     }
 }

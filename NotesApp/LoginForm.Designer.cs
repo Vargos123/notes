@@ -42,6 +42,7 @@
             this.passF = new System.Windows.Forms.TextBox();
             this.loginF = new System.Windows.Forms.TextBox();
             this.CloseButton = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,6 +51,7 @@
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.BackgroundImage = global::NotesApp.Properties.Resources.Login1;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.hide);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.richTextBox1);
@@ -225,6 +227,19 @@
             this.CloseButton.MouseEnter += new System.EventHandler(this.CloseButton_MouseEnter);
             this.CloseButton.MouseLeave += new System.EventHandler(this.CloseButton_MouseLeave);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(168, 556);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(149, 18);
+            this.label3.TabIndex = 32;
+            this.label3.Text = "Войти без Логина";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -257,5 +272,6 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.Label hide;
+        private System.Windows.Forms.Label label3;
     }
 }
