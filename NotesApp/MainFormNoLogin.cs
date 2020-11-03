@@ -19,11 +19,7 @@ namespace NotesApp
         {
             this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
-        }           
-
-        
-
-
+        }               
         private void CloseButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -230,14 +226,13 @@ namespace NotesApp
 
                 if ((myStream = openFileDialog1.OpenFile()) != null)
                 {
-                    StreamReader myReader = new StreamReader(myStream);
-
+                    StreamReader myReader = new StreamReader(myStream);                    
                     string[] str;
                     int num;
                     try
                     {
                         string[] str1 = myReader.ReadToEnd().Split('\n');
-                        num = str1.Count();
+                        num = str1.Count() - 1;
                         dataGridView1.RowCount = num;
                         for (int i = 0; i < num; i++)
                         {
@@ -257,7 +252,6 @@ namespace NotesApp
                         myReader.Close();
                     }
                 }
-
             }
         }
 

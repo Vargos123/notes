@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotesApp", "NotesApp\NotesApp.csproj", "{41587305-6B1A-4A3D-81BD-7E3091C4AFB1}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{229C376B-C317-4A51-8104-8967A7B935D1}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,9 +15,6 @@ Global
 		{41587305-6B1A-4A3D-81BD-7E3091C4AFB1}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{41587305-6B1A-4A3D-81BD-7E3091C4AFB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41587305-6B1A-4A3D-81BD-7E3091C4AFB1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{229C376B-C317-4A51-8104-8967A7B935D1}.Debug|Any CPU.ActiveCfg = Debug
-		{229C376B-C317-4A51-8104-8967A7B935D1}.Release|Any CPU.ActiveCfg = Release
-		{229C376B-C317-4A51-8104-8967A7B935D1}.Release|Any CPU.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
