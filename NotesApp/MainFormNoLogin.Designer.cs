@@ -272,7 +272,6 @@
             this.messageBox.Name = "messageBox";
             this.messageBox.Size = new System.Drawing.Size(412, 120);
             this.messageBox.TabIndex = 33;
-            this.messageBox.TextChanged += new System.EventHandler(this.messageBox_TextChanged);
             // 
             // nameBox
             // 

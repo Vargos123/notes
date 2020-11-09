@@ -212,11 +212,6 @@ namespace NotesApp
             }
         }
 
-        private void открытьToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void bttDelAll_Click(object sender, EventArgs e)
         {
             if (dataGridView1.RowCount > 0)
@@ -236,7 +231,7 @@ namespace NotesApp
             }
         }
 
-        private void openFile_Click(object sender, EventArgs e)
+        public void OpenF()
         {
             Stream myStream = null;
             openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
@@ -248,7 +243,7 @@ namespace NotesApp
 
                 if ((myStream = openFileDialog1.OpenFile()) != null)
                 {
-                    StreamReader myReader = new StreamReader(myStream);                    
+                    StreamReader myReader = new StreamReader(myStream);
                     string[] str;
                     int num;
                     try
@@ -277,9 +272,21 @@ namespace NotesApp
             }
         }
 
-        private void messageBox_TextChanged(object sender, EventArgs e)
+        private void openFile_Click(object sender, EventArgs e)
         {
+            if (dataGridView1.RowCount > 0)
+            {
+                if (MessageBox.Show("У вас уже открыт файл. После открытия нового файла, старый файл будет закрыт. Проверьте его сохранение! Продолжить?", "Открытие", MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.OK)
+                {
+                    OpenF();
+                }
+            }
+            else
+            {
+                OpenF();
 
+            }
         }
 
         private void saveFile_Click(object sender, EventArgs e)
@@ -328,11 +335,6 @@ namespace NotesApp
                 MessageBox.Show("Нет записей для сохранения. Добавьте записи!");
                 return;
             }
-        }
-
-        private void printPreviewDialog1_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

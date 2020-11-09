@@ -315,7 +315,7 @@ namespace NotesApp
                         if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
                         {
                             dataGridView1.Rows.Clear();
-                            using (MySqlCommand commanS = new MySqlCommand("TRUNCATE TABLE " + log, db.getConn()))
+                            using (MySqlCommand commanS = new MySqlCommand("TRUNCATE TABLE `" + log + "`", db.getConn()))
                             {
                                 db.openConn();
                                 commanS.ExecuteNonQuery();
