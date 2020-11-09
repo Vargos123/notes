@@ -125,10 +125,10 @@ namespace NotesApp
         }
         private void CloseButton_Click(object sender, EventArgs e)
         {
-            if (nameBox.TextLength > 0 || messageBox.TextLength > 0)
+            if (dataGridView1.RowCount > 0)
             {
-                if (MessageBox.Show("У вас есть не сохраненные данные. Продолжить?", "Продолжение", MessageBoxButtons.OKCancel,
-                    MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.OK)
+                if (MessageBox.Show("Вы действительно хотите выйти? Несохранённые данные будут утеряны!", "Выход", MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.OK)
                 {
                     Application.Exit();
                 }
@@ -346,9 +346,31 @@ namespace NotesApp
 
         private void bttExit_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            LoginForm logF = new LoginForm();
-            logF.Show();
+            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                if (dataGridView1.RowCount > 0)
+                {
+                    if (MessageBox.Show("Вы действительно хотите выйти? Несохранённые данные будут утеряны!", "Выход", MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.OK)
+                    {
+                        this.Hide();
+                        LoginForm logF = new LoginForm();
+                        logF.Show();
+                    }
+                }
+                else
+                {
+                    this.Hide();
+                    LoginForm logF = new LoginForm();
+                    logF.Show();
+                }
+            }
+            else
+            {
+                this.Hide();
+                LoginForm logF = new LoginForm();
+                logF.Show();
+            }            
         }
 
         private void bttDelAcc_Click(object sender, EventArgs e)
