@@ -69,7 +69,7 @@ namespace NotesApp
                 {
                     MessageBox.Show("Вы можете добавить не больше 100 записей :( ");
                     return;
-                }
+                }  
                 else if (nameBox.Text == "")
                 {
                     MessageBox.Show("Вы не ввели Название");
@@ -102,7 +102,7 @@ namespace NotesApp
                     dataGridView1.Rows[n].Cells[1].Value = messageBox.Text;
                 }
 
-                MySqlCommand command = new MySqlCommand("INSERT INTO " + log + " (`Title`, `Message`) VALUES (@Title, @Message)", db.getConn());
+                MySqlCommand command = new MySqlCommand("INSERT INTO `" + log + "` (`Title`, `Message`) VALUES (@Title, @Message)", db.getConn());
 
                 command.Parameters.Add("@Title", MySqlDbType.VarChar).Value = nameBox.Text;
                 command.Parameters.Add("@Message", MySqlDbType.VarChar).Value = messageBox.Text;
@@ -125,7 +125,18 @@ namespace NotesApp
         }
         private void CloseButton_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            if (dataGridView1.RowCount > 0)
+            {
+                if (MessageBox.Show("Вы действительно хотите выйти? Несохранённые данные будут утеряны!", "Выход", MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.OK)
+                {
+                    Application.Exit();
+                }
+            }
+            else
+            {
+                Application.Exit();
+            }
         }
         private void CloseButton_MouseEnter(object sender, EventArgs e)
         {
@@ -304,7 +315,7 @@ namespace NotesApp
                         if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
                         {
                             dataGridView1.Rows.Clear();
-                            using (MySqlCommand commanS = new MySqlCommand("TRUNCATE TABLE " + log, db.getConn()))
+                            using (MySqlCommand commanS = new MySqlCommand("TRUNCATE TABLE `" + log + "`", db.getConn()))
                             {
                                 db.openConn();
                                 commanS.ExecuteNonQuery();
@@ -335,9 +346,31 @@ namespace NotesApp
 
         private void bttExit_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            LoginForm logF = new LoginForm();
-            logF.Show();
+            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                if (dataGridView1.RowCount > 0)
+                {
+                    if (MessageBox.Show("Вы действительно хотите выйти? Несохранённые данные будут утеряны!", "Выход", MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.OK)
+                    {
+                        this.Hide();
+                        LoginForm logF = new LoginForm();
+                        logF.Show();
+                    }
+                }
+                else
+                {
+                    this.Hide();
+                    LoginForm logF = new LoginForm();
+                    logF.Show();
+                }
+            }
+            else
+            {
+                this.Hide();
+                LoginForm logF = new LoginForm();
+                logF.Show();
+            }            
         }
 
         private void bttDelAcc_Click(object sender, EventArgs e)

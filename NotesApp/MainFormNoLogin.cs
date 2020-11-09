@@ -19,14 +19,21 @@ namespace NotesApp
         {
             this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
-        }           
-
-        
-
-
+        }               
         private void CloseButton_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            if (dataGridView1.RowCount > 0)
+            {
+                if (MessageBox.Show("Вы действительно хотите выйти? Несохранённые данные будут утеряны!", "Выход", MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.OK)
+                {
+                    Application.Exit();
+                }
+            }
+            else
+            {
+                Application.Exit();
+            }
         }
         private void CloseButton_MouseEnter(object sender, EventArgs e)
         {
@@ -127,8 +134,12 @@ namespace NotesApp
         {
             if (dataGridView1.RowCount > 0)
             {
-                int index = dataGridView1.SelectedCells[0].RowIndex;
-                dataGridView1.Rows.RemoveAt(index);
+                if (MessageBox.Show("Вы действительно хотите удалить выделенную запись?", "Удаление", MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.OK)
+                {
+                    int index = dataGridView1.SelectedCells[0].RowIndex;
+                    dataGridView1.Rows.RemoveAt(index);
+                }
             }
             else
             {
@@ -144,9 +155,22 @@ namespace NotesApp
         }
         private void bttExit_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            LoginForm logF = new LoginForm();
-            logF.Show();
+            if (dataGridView1.RowCount > 0)
+            {
+                if (MessageBox.Show("Вы действительно хотите выйти? Несохранённые данные будут утеряны!", "Выход", MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.OK)
+                {
+                    this.Hide();
+                    LoginForm logF = new LoginForm();
+                    logF.Show();
+                }
+            }
+            else
+            {
+                this.Hide();
+                LoginForm logF = new LoginForm();
+                logF.Show();
+            }            
         }    
 
 
@@ -189,8 +213,10 @@ namespace NotesApp
 
                     string Title = nameBox.Text;
                     string Message = messageBox.Text;
-                    dataGridView1.Rows.Add(Title, Message);                
-
+                    dataGridView1.Rows.Add(Title, Message);
+                    MessageBox.Show("Вы успешно добавили данные");
+                    nameBox.Clear();
+                    messageBox.Clear();
                 }
             }
             catch
@@ -200,16 +226,17 @@ namespace NotesApp
             }
         }
 
-        private void открытьToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void bttDelAll_Click(object sender, EventArgs e)
         {
             if (dataGridView1.RowCount > 0)
             {
-                dataGridView1.Rows.Clear();
+                    if (MessageBox.Show("Вы действительно хотите удалить все записи?", "Удаление", MessageBoxButtons.OKCancel,
+                        MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.OK)
+                    {
+                        dataGridView1.Rows.Clear();
+                        MessageBox.Show("Все записи были успешно удаленны!");
+                        return;
+                    }
             }
             else
             {
@@ -218,7 +245,7 @@ namespace NotesApp
             }
         }
 
-        private void openFile_Click(object sender, EventArgs e)
+        public void OpenF()
         {
             Stream myStream = null;
             openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
@@ -231,13 +258,12 @@ namespace NotesApp
                 if ((myStream = openFileDialog1.OpenFile()) != null)
                 {
                     StreamReader myReader = new StreamReader(myStream);
-
                     string[] str;
                     int num;
                     try
                     {
                         string[] str1 = myReader.ReadToEnd().Split('\n');
-                        num = str1.Count();
+                        num = str1.Count() - 1;
                         dataGridView1.RowCount = num;
                         for (int i = 0; i < num; i++)
                         {
@@ -257,58 +283,72 @@ namespace NotesApp
                         myReader.Close();
                     }
                 }
-
             }
         }
 
-        private void messageBox_TextChanged(object sender, EventArgs e)
+        private void openFile_Click(object sender, EventArgs e)
         {
+            if (dataGridView1.RowCount > 0)
+            {
+                if (MessageBox.Show("У вас уже открыт файл. После открытия нового файла, старый файл будет закрыт. Проверьте его сохранение! Продолжить?", "Открытие", MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.OK)
+                {
+                    OpenF();
+                }
+            }
+            else
+            {
+                OpenF();
 
+            }
         }
 
         private void saveFile_Click(object sender, EventArgs e)
         {
-            dataGridView1.AllowUserToAddRows = false;
-            Stream myStream;
-
-            saveFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            saveFileDialog1.FilterIndex = 2;
-            saveFileDialog1.RestoreDirectory = true;
-
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            if (dataGridView1.RowCount > 0)
             {
-                if ((myStream = saveFileDialog1.OpenFile()) != null)
+                dataGridView1.AllowUserToAddRows = false;
+                Stream myStream;
+
+                saveFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+                saveFileDialog1.FilterIndex = 2;
+                saveFileDialog1.RestoreDirectory = true;
+
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 {
-                    StreamWriter myWritet = new StreamWriter(myStream);
-                    try
+                    if ((myStream = saveFileDialog1.OpenFile()) != null)
                     {
-                        for (int i = 0; i < dataGridView1.RowCount; i++)
+                        StreamWriter myWritet = new StreamWriter(myStream);
+                        try
                         {
-                            for (int j = 0; j < dataGridView1.ColumnCount; j++)
+                            for (int i = 0; i < dataGridView1.RowCount; i++)
                             {
-                                myWritet.Write(dataGridView1.Rows[i].Cells[j].Value.ToString() + " ");
+                                for (int j = 0; j < dataGridView1.ColumnCount; j++)
+                                {
+                                    myWritet.Write(dataGridView1.Rows[i].Cells[j].Value.ToString() + " ");
+                                }
+                                myWritet.WriteLine();
                             }
-                            myWritet.WriteLine();
+
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                        finally
+                        {
+                            myWritet.Close();
                         }
 
+                        myStream.Close();
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                    finally
-                    {
-                        myWritet.Close();
-                    }
-
-                    myStream.Close();
                 }
             }
-        }
-
-        private void printPreviewDialog1_Load(object sender, EventArgs e)
-        {
-
+            else
+            {
+                MessageBox.Show("Нет записей для сохранения. Добавьте записи!");
+                return;
+            }
         }
     }
 }
