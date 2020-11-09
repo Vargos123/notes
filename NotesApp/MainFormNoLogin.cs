@@ -89,7 +89,7 @@ namespace NotesApp
 
                 if (textBoxSearch.Text == "")
                 {
-                    MessageBox.Show("Вы не ввели данные для поиска");
+                    MessageBox.Show("Вы не ввели данные для поиска.");
                     return;
                 }
                 for (int i = 0; i < dataGridView1.RowCount; i++)
@@ -180,7 +180,7 @@ namespace NotesApp
             {
                 if (dataGridView1.Rows.Count == 100)
                 {
-                    MessageBox.Show("Вы можете добавить не больше 100 записей :( ");
+                    MessageBox.Show("Вы не можете добавить больше 100 записей!");
                     return;
                 }
                 else if (nameBox.Text == "")
@@ -299,7 +299,6 @@ namespace NotesApp
             else
             {
                 OpenF();
-
             }
         }
 

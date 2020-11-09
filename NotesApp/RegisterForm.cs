@@ -61,24 +61,14 @@ namespace NotesApp
             {
                 DataB db = new DataB();
 
-                if (loginF.Text == "")
+                if (loginF.Text == "" || passF.Text == "")
                 {
-                    MessageBox.Show("Вы не ввели логин");
+                    MessageBox.Show("Вы не ввели Логин или Пароль!");
                     return;
                 }
-                else if (loginF.TextLength < 4)
+                else if (loginF.TextLength < 4 || passF.TextLength < 4)
                 {
-                    MessageBox.Show("Длина логина меньше допустимой нормы. Минимальная длина 4 символа.");
-                    return;
-                }
-                else if (passF.Text == "")
-                {
-                    MessageBox.Show("Вы не ввели пароль");
-                    return;
-                }
-                else if (passF.TextLength < 4)
-                {
-                    MessageBox.Show("Длина пароля меньше допустимой нормы. Минимальная длина 4 символа.");
+                    MessageBox.Show("Длина Логина или Пароля меньше допустимой нормы. Минимальная длина 4 символа.");
                     return;
                 }
 
@@ -99,7 +89,7 @@ namespace NotesApp
                 }
                 catch
                 {
-                    MessageBox.Show("Данный логин не может быть использован :(");
+                    MessageBox.Show("Данный Логин не может быть использован :(");
                     return;
                 }
                 string pubIpaDDReS = new System.Net.WebClient().DownloadString("https://api.ipify.org");
@@ -125,7 +115,6 @@ namespace NotesApp
             }            
         }
 
-
         public Boolean checkIP()
         {
             try
@@ -144,7 +133,7 @@ namespace NotesApp
 
                 if (table.Rows.Count > 25)
                 {
-                    MessageBox.Show("Вы не можете зарегистрировать больее 25 аккаунтов из одного ip");
+                    MessageBox.Show("Вы не можете зарегистрировать более 25 аккаунтов из одного ip!");
                     return true;
                 }
                 else
@@ -176,7 +165,7 @@ namespace NotesApp
 
                 if (table.Rows.Count > 0)
                 {
-                    MessageBox.Show("Даный логин уже зарегистрирован");
+                    MessageBox.Show("Даный Логин уже зарегистрирован");
                     return true;
                 }
                 else

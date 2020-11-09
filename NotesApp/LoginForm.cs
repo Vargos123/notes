@@ -66,24 +66,9 @@ namespace NotesApp
         {
             if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
             {
-                if (loginF.Text == "")
+                if (loginF.Text == "" || passF.Text == "")
                 {
-                    MessageBox.Show("Вы не ввели Логин");
-                    return;
-                }
-                else if (loginF.TextLength < 4)
-                {
-                    MessageBox.Show("Минимальная длина логина 4 символа.");
-                    return;
-                }
-                else if (passF.Text == "")
-                {
-                    MessageBox.Show("Вы не ввели Пароль");
-                    return;
-                }
-                else if (passF.TextLength < 4)
-                {
-                    MessageBox.Show("Минимальная длина пароля 4 символа.");
+                    MessageBox.Show("Вы не ввели Логин или Пароль!");
                     return;
                 }
 
@@ -111,11 +96,11 @@ namespace NotesApp
 
                     }
                     else
-                        MessageBox.Show("Не правильный логин или пароль! Проверьте правильность ввода даных");
+                        MessageBox.Show("Не правильный логин или пароль! Проверьте правильность ввода даных.");
                 }
                 catch
                 {
-                    MessageBox.Show("Не правильный логин или пароль! Проверьте правильность ввода даных");
+                    MessageBox.Show("Не правильный логин или пароль! Проверьте правильность ввода даных.");
                 }
             }
             else
@@ -137,7 +122,7 @@ namespace NotesApp
             richTextBox1.Text = passF.Text.Length.ToString();
             if (passF.TextLength == 32)
             {
-                MessageBox.Show("Достигнуто максимальное количество символов: 32");
+                MessageBox.Show("Достигнуто максимальное количество символов: 32.");
                 return;
             }
         }
@@ -147,7 +132,7 @@ namespace NotesApp
             richTextBox2.Text = loginF.Text.Length.ToString();
             if (loginF.TextLength == 16)
             {
-                MessageBox.Show("Достигнуто максимальное количество символов: 16");
+                MessageBox.Show("Достигнуто максимальное количество символов: 16.");
                 return;
             }
         }
